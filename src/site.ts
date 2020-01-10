@@ -36,3 +36,13 @@ export class SiteDomain {
     }).suchThat(SiteDomain.isCurrent);
   }
 }
+
+export class Content {
+  static Type = "Feedback.Content";
+  type = Content.Type;
+
+  constructor (
+    public site: Site,
+    public path: string
+  ) { } 
+}
