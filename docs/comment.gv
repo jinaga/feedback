@@ -1,0 +1,47 @@
+digraph "A site visitor comments on content" {
+  rankdir=BT
+
+  subgraph {
+    rank=same
+
+    Creator [shape="none" label=<
+      <TABLE border="0" cellborder="0">
+      <tr><td align="left" colspan="2" border="1" sides="B">Jinaga.User</td></tr>
+      <tr><td align="left">publicKey:</td><td align="left">string</td></tr>
+      </TABLE>>]
+    Visitor [shape="none" label=<
+      <TABLE border="0" cellborder="0">
+      <tr><td align="left" colspan="2" border="1" sides="B">Jinaga.User</td></tr>
+      <tr><td align="left">publicKey:</td><td align="left">string</td></tr>
+      </TABLE>>]
+  }
+
+  Site [shape="none" label=<
+    <TABLE border="0" cellborder="0">
+    <tr><td align="left" colspan="2" border="1" sides="B">Feedback.Site</td></tr>
+    <tr><td align="left">uniqueId:</td><td align="left">guid</td></tr>
+    </TABLE>>]
+  Content [shape="none" label=<
+    <TABLE border="0" cellborder="0">
+    <tr><td align="left" colspan="2" border="1" sides="B">Feedback.Content</td></tr>
+    <tr><td align="left">path:</td><td align="left">string</td></tr>
+    </TABLE>>]
+  Comment [shape="none" label=<
+    <TABLE border="0" cellborder="0">
+    <tr><td align="left" colspan="2" border="1" sides="B">Feedback.Comment</td></tr>
+    <tr><td align="left">uniqueId:</td><td align="left">guid</td></tr>
+    </TABLE>>]
+  CommentText [shape="none" label=<
+    <TABLE border="0" cellborder="0">
+    <tr><td align="left" colspan="2" border="1" sides="B">Feedback.Content.Text</td></tr>
+    <tr><td align="left">value:</td><td align="left">string</td></tr>
+    </TABLE>>]
+
+  Site -> Creator [label=" createdBy"]
+
+  Content -> Site
+  Comment -> Content
+  Comment -> Visitor [label=" author"]
+  CommentText -> Comment
+  CommentText -> CommentText [label=" * prior"]
+}

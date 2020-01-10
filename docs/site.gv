@@ -1,0 +1,23 @@
+digraph "A site owner creates a site" {
+  rankdir=BT
+
+  User [shape="none" label=<
+    <TABLE border="0" cellborder="0">
+    <tr><td align="left" colspan="2" border="1" sides="B">Jinaga.User</td></tr>
+    <tr><td align="left">publicKey:</td><td align="left">string</td></tr>
+    </TABLE>>]
+  Site [shape="none" label=<
+    <TABLE border="0" cellborder="0">
+    <tr><td align="left" colspan="2" border="1" sides="B">Feedback.Site</td></tr>
+    <tr><td align="left">uniqueId:</td><td align="left">guid</td></tr>
+    </TABLE>>]
+  SiteDomain [shape="none" label=<
+    <TABLE border="0" cellborder="0">
+    <tr><td align="left" colspan="2" border="1" sides="B">Feedback.SiteDomain</td></tr>
+    <tr><td align="left">value:</td><td align="left">string</td></tr>
+    </TABLE>>]
+
+  Site -> User [label=" createdBy"]
+  SiteDomain -> Site
+  SiteDomain -> SiteDomain [label=" * prior"]
+}
