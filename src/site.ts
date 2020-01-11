@@ -1,4 +1,4 @@
-import { Jinaga as j } from 'jinaga';
+import { Jinaga as j, ensure } from 'jinaga';
 
 import { User } from './user';
 
@@ -10,6 +10,11 @@ export class Site {
     public createdBy: User,
     public uniqueId: string
   ) { }
+
+  static createdBy(site: Site) {
+    ensure(site).has("createdBy");
+    return j.match(site.createdBy);
+  }
 }
 
 export class SiteDomain {
@@ -21,6 +26,11 @@ export class SiteDomain {
     public value: string,
     public prior: SiteDomain[]
   ) { }
+
+  static site(siteDomain: SiteDomain) {
+    ensure(siteDomain).has("site");
+    return j.match(siteDomain.site);
+  }
 
   static isCurrent(siteDomain: SiteDomain) {
     return j.notExists(<SiteDomain>{
@@ -44,5 +54,10 @@ export class Content {
   constructor (
     public site: Site,
     public path: string
-  ) { } 
+  ) { }
+
+  static site(content: Content) {
+    ensure(content).has("site");
+    return j.match(content.site);
+  }
 }

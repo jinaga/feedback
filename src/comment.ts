@@ -1,4 +1,4 @@
-import { Jinaga as j } from 'jinaga';
+import { Jinaga as j, ensure } from 'jinaga';
 
 import { Content } from './site';
 import { User } from './user';
@@ -12,6 +12,16 @@ export class Comment {
     public content: Content,
     public author: User
   ) { }
+
+  static content(comment: Comment) {
+    ensure(comment).has("content");
+    return j.match(comment.content);
+  }
+
+  static author(comment: Comment) {
+    ensure(comment).has("author");
+    return j.match(comment.author);
+  }
 
   static isDeleted(comment: Comment) {
     return j.exists(<CommentDelete>{
@@ -38,6 +48,11 @@ export class CommentText {
     public prior: CommentText[]
   ) { }
 
+  static comment(commentText: CommentText) {
+    ensure(commentText).has("comment");
+    return j.match(commentText.comment);
+  }
+
   static isCurrent(commentText: CommentText) {
     return j.notExists(<CommentText>{
       type: CommentText.Type,
@@ -60,4 +75,9 @@ export class CommentDelete {
   constructor (
     public comment: Comment
   ) { }
+
+  static comment(commentDelete: CommentDelete) {
+    ensure(commentDelete).has("comment");
+    return j.match(commentDelete.comment);
+  }
 }

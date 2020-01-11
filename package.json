@@ -26,6 +26,6 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "jinaga": "^2.4.4"
+    "jinaga": "^2.5.1"
   }
 }
