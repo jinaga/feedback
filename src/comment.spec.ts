@@ -47,7 +47,7 @@ describe("Comment", () => {
   });
 
   it("should be able to delete a comment", async () => {
-    const { userFact: user } = await j.login();
+    const { userFact: user } = await j.login<User>();
     const comment = await j.fact(new Comment(
       "16f359cc-4125-4259-ab22-481a95dcc7f7", content, user));
     await j.fact(new CommentText(comment, "I'd like to learn more about this.", []));
