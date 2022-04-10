@@ -14,12 +14,12 @@ export class Comment {
   ) { }
 
   static content(comment: Comment) {
-    ensure(comment).has("content");
+    ensure(comment).has("content", Content);
     return j.match(comment.content);
   }
 
   static author(comment: Comment) {
-    ensure(comment).has("author");
+    ensure(comment).has("author", User);
     return j.match(comment.author);
   }
 
@@ -49,7 +49,7 @@ export class CommentText {
   ) { }
 
   static comment(commentText: CommentText) {
-    ensure(commentText).has("comment");
+    ensure(commentText).has("comment", Comment);
     return j.match(commentText.comment);
   }
 
@@ -77,7 +77,7 @@ export class CommentDelete {
   ) { }
 
   static comment(commentDelete: CommentDelete) {
-    ensure(commentDelete).has("comment");
+    ensure(commentDelete).has("comment", Comment);
     return j.match(commentDelete.comment);
   }
 }

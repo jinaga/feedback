@@ -12,7 +12,7 @@ export class Site {
   ) { }
 
   static createdBy(site: Site) {
-    ensure(site).has("createdBy");
+    ensure(site).has("createdBy", User);
     return j.match(site.createdBy);
   }
 }
@@ -28,7 +28,7 @@ export class SiteDomain {
   ) { }
 
   static site(siteDomain: SiteDomain) {
-    ensure(siteDomain).has("site");
+    ensure(siteDomain).has("site", Site);
     return j.match(siteDomain.site);
   }
 
@@ -57,7 +57,7 @@ export class Content {
   ) { }
 
   static site(content: Content) {
-    ensure(content).has("site");
+    ensure(content).has("site", Site);
     return j.match(content.site);
   }
 }
